@@ -7,7 +7,7 @@ Originally built to solve a specific problem, where a database could only be exp
 1,Some text,"Sentence, with a comma",More text, -- 4 columns
 ```
 
-The issue is that MSSQL `BULK INSERT` does not recognise the quotes and in the above example would try to populate 5 columns and error.
+The issue is that SQL Server `BULK INSERT` does not recognise the quotes and in the above example would try to populate 5 columns and error.
 
 ## Usage
 1. Place CSVRedelimiter.py in folder with the CSV file(s)
