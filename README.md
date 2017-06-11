@@ -12,16 +12,12 @@ The issue is that SQL Server `BULK INSERT` does not recognise the quotes and in 
 ## Usage
 1. Place CSVRedelimiter.py in folder with the CSV file(s)
 2. Create the output directory (Default: ./Fixed)
-3. Update variables to meet your needs
+3. Run `python3 CSVRedelimiter.py -d "," -r "^" -s "fixed" -k`
+4. OR - Update variables to meet your needs
     * `initialChar` - Character you want replaced 
     * `replaceChar` - Character to replace with
     * `removeQuotes` - True to also remove quotes, False keeps quotes
     * `savePath` - The directory to save the updated CSV(s) to. Must exist before running
 4. Run `python CSVRedelimiter.py`
-
-
-## TODO
-* Add command line arguments
-* Automatically create the output directory if it doesn't exist
 
 Originally developed by [@Rollinginsanity](https://github.com/rollinginsanity), extended by me.

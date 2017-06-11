@@ -1,0 +1,7 @@
+#Create a file with this name for testing.
+csv_sample.csv
+
+#Default output directory.
+fixed/
+
+.vscode/
