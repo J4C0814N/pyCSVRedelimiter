@@ -3,3 +3,5 @@ csv_sample.csv
 
 #Default output directory.
 fixed/
+
+.vscode/
