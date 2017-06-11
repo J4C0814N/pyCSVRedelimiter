@@ -2,15 +2,33 @@ import os
 import csv
 import glob
 import shutil
+import argparse
 
+parser = argparse.ArgumentParser(description="Fixes quotes and delimeters in files.")
+parser.add_argument('-d', '--delimiter', dest="currentDelimiter", help="The current delimiter in your file.")
+parser.add_argument('-r', '--replacement-delimiter', dest="newDelimiter", help='The new delimiter you want to use.')
+parser.add_argument('-s', '--save-path', dest="savePath", help="The output path to save updated files in.")
+parser.add_argument('-k', '--kill-quotes', dest="removeQuotes", action="store_true", help="Remove quotes from strings.")
+args = parser.parse_args()
 path = "./*.csv"
 #Some defaults.
+
 initialChar = ","
 replaceChar = "|"
 removeQuotes = False
 savePath = "./fixed/" 
 
+if args.currentDelimiter: initialChar = args.currentDelimiter
+if args.newDelimiter: replaceChar = args.newDelimiter
+if args.savePath: savePath = "./"+args.savePath+"/"
+if args.removeQuotes: removeQuotes = args.removeQuotes
+
 def main():
+	print("#### Configured with")
+	print("--- Current delimiter: "+initialChar)
+	print("--- New delimiter: "+replaceChar)
+	print("--- Save path: "+savePath)
+	print("--- Kill Quotes: "+str(removeQuotes))
 	print("#### Checking output directory exists.")
 	create_save_dir(savePath)
 	print(glob.glob(path))
