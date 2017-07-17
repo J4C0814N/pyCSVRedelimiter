@@ -68,7 +68,7 @@ def main():
 		print(os.path.basename(fname) + " Done")
 
 
-#######Functions are down here.
+####### Functions are down here.
 
 def fix_date(rem):
 	date_string = rem.group()
