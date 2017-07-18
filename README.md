@@ -18,6 +18,11 @@ The issue is that SQL Server `BULK INSERT` does not recognise the quotes and in 
     * `replaceChar` - Character to replace with
     * `removeQuotes` - True to also remove quotes, False keeps quotes
     * `savePath` - The directory to save the updated CSV(s) to. Must exist before running
+    * `dateFormat` - The date format for any date values in the csv
+    * `dateFormatRegex` - The regex equivalent of `dateFormat` used to find all instances of the date to replace
+    * `sqlDateFormat` - The date format accepted by the database or destination 
+    * `fixDates` - True to convert any content matching `dateFormat` to `sqlDateFormat`
+
 4. Run `python CSVRedelimiter.py`
 
 Originally developed by [@Rollinginsanity](https://github.com/rollinginsanity), extended by me.
