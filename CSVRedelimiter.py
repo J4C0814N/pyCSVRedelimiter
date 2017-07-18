@@ -10,7 +10,7 @@ parser = argparse.ArgumentParser(description="Fixes quotes and delimeters in fil
 parser.add_argument('-d', '--delimiter', dest="currentDelimiter", help="The current delimiter in your file.")
 parser.add_argument('-df', '--date-format', dest="dateFormat",
 					help="The current date format, will be converted to MSSQL format (implies -fd).")
-parser.add_argument('-fd', '--fix-dates', dest="store_true", help="Fix dates?")
+parser.add_argument('-fd', '--fix-dates', dest="fixDates", action="store_true", help="Fix dates?")
 parser.add_argument('-r', '--replacement-delimiter', dest="newDelimiter", help='The new delimiter you want to use.')
 parser.add_argument('-s', '--save-path', dest="savePath", help="The output path to save updated files in.")
 parser.add_argument('-k', '--kill-quotes', dest="removeQuotes", action="store_true", help="Remove quotes from strings.")
@@ -23,6 +23,7 @@ replaceChar = "|"
 removeQuotes = False
 savePath = "./fixed/"
 dateFormat = "%d/%m/%Y"
+dateFormatRegex = r'\d{2}/\d{2}/\d{4}'
 sqlDateFormat = "%d/%b/%Y"
 fixDates = False
 
@@ -30,6 +31,7 @@ if args.currentDelimiter: initialChar = args.currentDelimiter
 if args.newDelimiter: replaceChar = args.newDelimiter
 if args.savePath: savePath = "./" + args.savePath + "/"
 if args.removeQuotes: removeQuotes = args.removeQuotes
+if args.fixDates: fixDates = args.fixDates
 if args.dateFormat:
 	dateFormat = args.dateFormat
 	fixDates = True
@@ -58,7 +60,7 @@ def main():
 				for line in csvFile:
 					if fixDates:
 						try:
-							line = re.sub(r'\d{2}/\d{2}/\d{4}', fix_date, line)
+							line = re.sub(dateFormatRegex, fix_date, line)
 						except:
 							print("Invalid Date")
 							line = line
